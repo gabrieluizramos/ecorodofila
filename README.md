@@ -9,4 +9,29 @@ O sistema baseia-se em uma fila de prioridades, utilizando RabbitMQ para criaç�
 
 Com o SLA atual e podendo existir diversos casos com prioridades diferentes, os incidentes serão categorizados de 0 a 10, sendo 0 um incidente pouco grave e 10 um incidente extremamente grave.
 
-O sistema expões uma API para criação de novos incidentes.
+- NodeJS como camada de back-end
+- RabbitMQ como fila e message broker
+
+#### Utilização
+
+O sistema expõe uma API para criação de novos incidentes, para isso, basta realizar o seguinte request:
+
+```sh
+curl --request POST \
+  --url "http://localhost:3000/api/publish" \
+  --header 'Authorization: 123token' \
+  --header 'Content-Type: application/json' \
+  --header 'cache-control: no-cache' \
+  --data '{	"incident": {"name": "name", "description": "description"}}'
+```
+
+Onde você deve prover um `token` válido para poder criar um incidente e enviar como corpo do request o seguinte payload:
+
+```jsonc
+{
+  "incident": {
+    "name": "nome do incidente",
+    "description": "descricao do ocorrido"
+  }
+}
+```
