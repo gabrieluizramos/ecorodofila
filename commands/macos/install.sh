@@ -10,5 +10,4 @@ else
   brew update
 fi
 
-brew install services
 brew install rabbitmq
