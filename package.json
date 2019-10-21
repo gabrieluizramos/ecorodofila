@@ -1,0 +1,32 @@
+{
+  "name": "fiap-ecorodovias",
+  "version": "1.0.0",
+  "description": "EcoRodovias ",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "nodemon server",
+    "start:workers": "nodemon consumers",
+    "start:rabbit": "sh commands/macos/start-rabbit.sh",
+    "stop:rabbit": "sh commands/macos/stop-rabbit.sh"
+  },
+  "engines": {
+    "node": "10.16.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrieluizramos/fiap-ecorodovias.git"
+  },
+  "keywords": [],
+  "author": "Gabriel Ramos <gabriel.luiz.ramos@gmail.com> (http://gabrieluizramos.com.br)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabrieluizramos/fiap-ecorodovias/issues"
+  },
+  "homepage": "https://github.com/gabrieluizramos/fiap-ecorodovias#readme",
+  "dependencies": {
+    "amqplib": "^0.5.5",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.4"
+  }
+}
