@@ -36,3 +36,11 @@ Onde você deve prover um `token` válido para poder criar um incidente e enviar
   }
 }
 ```
+
+#### RabbitMQ
+
+Lembre-se que o serviço do RabbitMQ possui um dashboard para visualização.
+Você pode acessá-lo [localmente rodando na porta 15672](http://localhost:15672) e os dados de acesso são:
+
+**username**: guest
+**password**: guest
