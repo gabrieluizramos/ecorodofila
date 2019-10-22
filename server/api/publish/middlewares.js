@@ -1,7 +1,8 @@
+const errors = require('../../middlewares/error/messages');
 const { isValidIncident } = require('../../../publishers/incidents/validate');
 
 const validateIncident = (req, res, next) => {
-  if (!isValidIncident(req.body.incident)) return res.status(400).json({ message: 'Invalid incident payload' });
+  if (!isValidIncident(req.body.incident)) throw new Error(errors.INVALID_INCIDENT_PAYLOAD);
 
   return next();
 };
