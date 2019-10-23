@@ -1,5 +1,5 @@
 const errors = require('./error/messages');
-const { tokens } = require('../../config/auth');
+const { tokens } = require('../../../../configs/auth');
 
 const isValidToken = token => tokens.has(token);
 

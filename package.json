@@ -4,8 +4,8 @@
   "description": "EcoRodovias ",
   "main": "index.js",
   "scripts": {
-    "start:server": "nodemon server",
-    "start:workers": "nodemon consumers",
+    "start:server": "nodemon ./app/entrypoint/http/incident",
+    "start:workers": "nodemon ./app/entrypoint/amqp/consumers/incident",
     "start:rabbit": "sh commands/macos/start-rabbit.sh",
     "stop:rabbit": "sh commands/macos/stop-rabbit.sh"
   },

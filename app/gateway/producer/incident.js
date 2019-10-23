@@ -1,4 +1,4 @@
-const queue = require('../../config/queues');
+const queue = require('../../configs/queue');
 const { connect } = require('amqplib');
 
 const publish = async incident => {
@@ -27,4 +27,6 @@ const publish = async incident => {
   return wasPublished;
 };
 
-module.exports = publish;
+module.exports = {
+  publish
+};

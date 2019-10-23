@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const publish = require('./publish');
+const incident = require('./incident');
 
-router.use('/publish', publish);
+router.use('/incident', incident);
 
 module.exports = router;
