@@ -7,9 +7,9 @@ const prioritize = ({ description }) => keywords.reduce(
   0
 );
 
-const isValidIncident = ({ name, description, priority = 0 }) => (typeof name === 'string' && typeof description === 'string');
+const validate = ({ name, description, priority = 0 }) => (typeof name === 'string' && typeof description === 'string');
 
-const prioritizeIncidentAndPublish = async incident => {
+const publish = async incident => {
   incident.priority = prioritize(incident);
   const published = await incidentGateway.publish(incident);
 
@@ -17,6 +17,6 @@ const prioritizeIncidentAndPublish = async incident => {
 };
 
 module.exports = {
-  prioritizeIncidentAndPublish,
-  isValidIncident
+  publish,
+  validate
 };
