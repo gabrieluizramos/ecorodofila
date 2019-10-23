@@ -1,4 +1,6 @@
 const errors = require('../../middlewares/error/messages');
+
+const { prioritize } = require('../../../publishers/incidents/prioritize');
 const { isValidIncident } = require('../../../publishers/incidents/validate');
 
 const validateIncident = (req, res, next) => {
@@ -7,6 +9,14 @@ const validateIncident = (req, res, next) => {
   return next();
 };
 
+const prioritizeMiddleware = (req, res, next) => {
+  const { incident } = req.body;
+  incident.priority = prioritize(incident);
+
+  return next();
+};
+
 module.exports = [
-  validateIncident
+  validateIncident,
+  prioritizeMiddleware
 ];

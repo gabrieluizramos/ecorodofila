@@ -11,7 +11,10 @@ module.exports = consume = (async () => {
     const connection = await connect(queue.host);
     const channel = await connection.createChannel();
 
-    await channel.assertQueue(queue.name, queue.assert);
+    await channel.assertQueue(queue.name, {
+      ...queue.assert,
+      maxPriority: queue.priority.high,
+    });
     await channel.prefetch(1);
     await channel.consume(queue.name, handleQueueMessage(channel), queue.consume);
 

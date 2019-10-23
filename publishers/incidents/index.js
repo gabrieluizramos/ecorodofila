@@ -8,8 +8,14 @@ const publish = async incident => {
     const connection = await connect(queue.host);
     const channel = await connection.createChannel();
 
-    await channel.assertQueue(queue.name, queue.assert);
-    await channel.sendToQueue(queue.name, Buffer.from(JSON.stringify(incident)), queue.options);
+    await channel.assertQueue(queue.name, {
+      ...queue.assertQueue,
+      maxPriority: queue.priority.high
+    });
+    await channel.sendToQueue(queue.name, Buffer.from(JSON.stringify(incident)), {
+      ...queue.options,
+      priority: incident.priority
+    });
     await channel.close();
 
     wasPublished = true;
