@@ -2,8 +2,8 @@ module.exports = {
     host: 'amqp://localhost',
     name: 'incident',
     priority: {
-      low: 0,
-      high: 10
+      high: 10,
+      keywords: require('./keywords')
     },
     assert: {
       durable: true
