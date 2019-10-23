@@ -7,11 +7,7 @@ const prioritize = ({ description }) => keywords.reduce(
   0
 );
 
-const isValidIncident = ({ name, description, priority = 0 }) => (
-  typeof name === 'string' &&
-  typeof description === 'string' &&
-  typeof priority === 'number'
-);
+const isValidIncident = ({ name, description, priority = 0 }) => (typeof name === 'string' && typeof description === 'string');
 
 const prioritizeIncidentAndPublish = async incident => {
   incident.priority = prioritize(incident);
