@@ -11,10 +11,13 @@ O sistema baseia-se em uma fila de prioridades, utilizando RabbitMQ para criaç�
 Com o SLA atual e podendo existir diversos casos com prioridades diferentes, os incidentes serão categorizados de 0 a 10, sendo 0 um incidente pouco grave e 10 um incidente extremamente grave.
 
 #### Stack
-- NodeJS como camada aplicação
-- RabbitMQ como fila/message broker
+- [NodeJS](https://nodejs.org/en/) como camada de backend
+- [RabbitMQ](https://www.rabbitmq.com) como fila/message broker
+- [NextJS](https://nextjs.org) como camada de frontend
 
 ##### Utilização
+
+###### Criação de incidentes (Publisher)
 
 O sistema expõe uma API para criação de novos incidentes, para isso, basta realizar o seguinte request:
 
@@ -27,7 +30,7 @@ curl --request POST \
   --data '{	"incident": {"name": "name", "description": "description"}}'
 ```
 
-Onde você deve prover um `token` válido para poder criar um incidente e enviar como corpo do request o seguinte payload:
+Onde você deve prover um nome de usuário e um `token` válido para poder criar um incidente e enviar como corpo do request o seguinte payload:
 
 ```jsonc
 {
@@ -37,6 +40,19 @@ Onde você deve prover um `token` válido para poder criar um incidente e enviar
   }
 }
 ```
+
+###### Consumo de incidentes (Consumer/BFF)
+O sistema expõe uma API para consumo de incidentes por usuário, para isso, basta realizar o seguinte request:
+
+```sh
+curl --request GET \
+  --url "http://localhost:3001/api/incident" \
+  --header 'Authorization: admin:123token' \
+  --header 'Content-Type: application/json' \
+  --header 'cache-control: no-cache'
+```
+
+Onde você deve prover um nome de usuário e um `token` válido para poder consumir e começar a tratar com um incidente.
 
 ##### RabbitMQ
 
