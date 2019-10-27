@@ -4,10 +4,19 @@
   "description": "EcoRodovias ",
   "main": "index.js",
   "scripts": {
+    "start": "",
+    "start:dev": "npm-run-all -p start:dashboard:dev start:bff",
+    "start:dashboard:dev": "./node_modules/.bin/next ./app/entrypoint/http/dashboard",
+    "start:bff": "nodemon ./app/entrypoint/http/bff",
+    "start:dashboard": "npm run next:clean && npm run build:next && npm run start:next",
     "start:server": "nodemon ./app/entrypoint/http/incident",
     "start:workers": "nodemon ./app/entrypoint/amqp/consumers/incident",
     "start:rabbit": "sh commands/macos/start-rabbit.sh",
-    "stop:rabbit": "sh commands/macos/stop-rabbit.sh"
+    "stop:rabbit": "sh commands/macos/stop-rabbit.sh",
+    "next:clean": "rm -rf ./app/entrypoint/http/dashboard/.next",
+    "build:next": "./node_modules/.bin/next build ./app/entrypoint/http/dashboard",
+    "start:next": "./node_modules/.bin/next start ./app/entrypoint/http/dashboard",
+    "clean-install": "rm -rf ./node_modules && npm i"
   },
   "engines": {
     "node": "10.16.3"
@@ -24,9 +33,20 @@
   },
   "homepage": "https://github.com/gabrieluizramos/fiap-ecorodovias#readme",
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
     "amqplib": "^0.5.5",
+    "axios": "^0.19.0",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "nodemon": "^1.19.4"
+    "js-cookie": "^2.2.1",
+    "next": "^9.1.1",
+    "next-cookies": "^1.1.3",
+    "next-images": "^1.2.0",
+    "node-sass": "^4.13.0",
+    "nodemon": "^1.19.4",
+    "npm-run-all": "^4.1.5",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
   }
 }
