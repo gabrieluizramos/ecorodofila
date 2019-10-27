@@ -1,25 +1,20 @@
 const express = require('express');
 
-const { users, tokens } = require('../../../../configs/auth');
+const { users, tokens, names } = require('../../../../configs/auth');
 
 const errors = require('../middlewares/error/messages');
 
 const router = express.Router();
 
 router.post('*', (req, res) => {
-  const user = req.body.email;
+  const { email: user, password } = req.body;
 
-  if (users.has(user)) {
+  if (users.has(user) && users.get(user) === password) {
     const token = tokens.get(user);
-    return res.status(200).json({ token })
+    return res.status(200).json({ token, name: names.get(user) })
   }
 
   throw new Error(errors.USER_NOT_AUTHORIZED)
-});
-
-router.get('*', (req, res) => {
-  console.log(req.cookies);
-  return res.status(200);
 });
 
 module.exports = router;
