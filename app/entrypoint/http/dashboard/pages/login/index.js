@@ -1,6 +1,8 @@
 // Default
 import React, { Component, Fragment } from 'react';
 
+import Router from 'next/router';
+
 // Components
 import Root from '../shared/root';
 import Label from '../../components/label';
@@ -11,10 +13,10 @@ import Button from '../../components/button';
 import styles from './styles.scss';
 
 // Services
-import { login, logout } from '../../services/auth';
+import { login } from '../../services/auth';
 
 class Login extends Component {
-  onSubmit = e => {
+  async onSubmit (e) {
     e.preventDefault();
     const {
       email: {
@@ -25,7 +27,13 @@ class Login extends Component {
       }
     } = e.target;
 
-    login(email, password);
+    try {
+      await login(email, password);
+      Router.push('/dashboard');
+    } catch(err) {
+      console.log(err);
+    }
+
     return false;
   }
 
