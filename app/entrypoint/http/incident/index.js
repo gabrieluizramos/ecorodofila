@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const { port } = require('../../../configs/server');
+const config = require('../../../configs/server');
 
 const middlewares = require('./middlewares');
 
@@ -11,6 +11,6 @@ app.use('/api', api);
 
 app.use(...middlewares.error);
 
-app.listen(port, () => {
-  console.log(`Server running at port ${port}`)
+app.listen(config.ports.api, () => {
+  console.log(`Server running at port ${config.ports.api}`)
 });

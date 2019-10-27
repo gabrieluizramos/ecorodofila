@@ -1,9 +1,19 @@
+const users = new Map([
+  [
+    'user', 'password'
+  ],
+  [
+    'admin', 'admin'
+  ]
+]);
+
 const tokens = new Map([
   [
-    '123token', 'Gabriel Ramos'
+    'admin', '123token'
   ]
 ]);
 
 module.exports = {
-  tokens
+  tokens,
+  users
 };

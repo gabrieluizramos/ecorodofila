@@ -1,10 +1,12 @@
 const errors = require('./error/messages');
 const { tokens } = require('../../../../configs/auth');
 
-const isValidToken = token => tokens.has(token);
+const isValidToken = (user, token) => token === tokens.get(user);
 
 const isAuthenticatedUser = (req, res, next) => {
-  if(!isValidToken(req.headers.authorization)) throw new Error(errors.USER_NOT_AUTHORIZED);
+  const [user, token] = req.headers.authorization.split(':');
+
+  if(!isValidToken(user, token)) throw new Error(errors.USER_NOT_AUTHORIZED);
 
   return next();
 };

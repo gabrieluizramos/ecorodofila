@@ -1,3 +1,8 @@
 module.exports = {
-  port: 3000
+  base: 'http://localhost',
+  ports: {
+    next: 3000,
+    bff: 3001,
+    api: 3002,
+  }
 }
