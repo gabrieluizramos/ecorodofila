@@ -8,15 +8,6 @@ const config = withImages(
     cssLoaderOptions: {
       importLoaders: 1,
       localIdentName: "[local]___[hash:base64:5]",
-    },
-    webpack: (config, { dev }) => {
-      config.module.rules.push(
-        {
-          test: /\.test.js$/,
-          loader: 'ignore-loader'
-        }
-      );
-      return config;
     }
   })
 );

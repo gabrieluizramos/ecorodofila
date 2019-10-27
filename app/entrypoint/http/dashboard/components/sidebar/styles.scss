@@ -1,0 +1,9 @@
+@import '../../styles/variables';
+
+.sidebar {
+  height: 100%;
+  width: 30%;
+  max-width: 250px;
+  position: relative;
+  box-shadow: $default-shadow;
+}

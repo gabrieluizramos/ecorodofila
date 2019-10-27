@@ -1,8 +1,10 @@
 // Colors
 $white: #FFF;
 $black: #000;
+$grey: #666;
 $light-green: #4EB746;
 $dark-green: #007454;
+$red: #FF5151;
 
 // Spacing
 $default-spacing: 15px;
@@ -10,3 +12,8 @@ $spacing: $default-spacing;
 
 // Font
 $font-size-default: 16px;
+$font-size-big: 18px;
+
+
+// Shadow
+$default-shadow: 0 0 5px rgba($black, 0.5);

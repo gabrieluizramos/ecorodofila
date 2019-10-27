@@ -14,19 +14,21 @@ export const login = async (email, password) => {
   } catch (err) {
     throw err;
   }
-
-  return false;
 };
+
+export const isLogged = () => !!cookie.get('token');
 
 export const logout = () => {
   cookie.remove('token');
+  cookie.remove('user');
+  cookie.remove('name');
   return true;
 };
 
-export const validateAuthentication = ctx => {
+export const validateAuthentication = (ctx, writeHead = true) => {
   const { token } = nextCookie(ctx);
 
-  if (ctx.req && !token) {
+  if (ctx.req && !token && writeHead) {
     ctx.res.writeHead(302, { Location: '/' });
     ctx.res.end();
     return false;

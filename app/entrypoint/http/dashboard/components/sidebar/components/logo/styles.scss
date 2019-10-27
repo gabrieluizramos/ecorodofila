@@ -1,0 +1,14 @@
+@import '../../../../styles/variables';
+
+.logo {
+  width: 100%;
+  background: $white;
+  padding: ($spacing * 2);
+  border-bottom: 2px solid $dark-green;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+

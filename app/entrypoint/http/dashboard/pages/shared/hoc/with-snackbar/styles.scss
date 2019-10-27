@@ -1,0 +1,37 @@
+@import '../../../../styles/variables';
+
+.snackbarContainer {
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.snackbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: ($spacing * 2);
+  width: 500px;
+  color: $white;
+  bottom: -100%;
+  border-radius: 5px;
+  box-shadow: $default-shadow;
+  text-align: center;
+  transition: .5s ease-in-out;
+}
+
+.snackbarActive {
+  bottom: 15%;
+}
+
+.success {
+  background: $light-green;
+}
+
+.error {
+  background: $red;
+}

@@ -1,0 +1,10 @@
+@import '../../../../styles/reset';
+
+.dashboard {
+  display: flex;
+}
+
+.pageContent {
+  width: calc(100% - 250px);
+  padding: 100px;
+}

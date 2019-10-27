@@ -1,0 +1,10 @@
+@import '../../styles/variables';
+
+.title {
+  padding: ($spacing * 2);
+  background: $dark-green;
+  color: $white;
+  letter-spacing: 3px;
+  font-weight: normal;
+  text-align: center;
+}

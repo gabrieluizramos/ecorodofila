@@ -1,0 +1,45 @@
+@import '../../../../styles/variables';
+
+.navItem {
+  &:last-child {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+    .link {
+      border-top: 2px solid $dark-green;
+      border-bottom: 0;
+    }
+  }
+}
+
+.link {
+  display: block;
+  position: relative;
+  padding: $spacing;
+  color: $dark-green;
+  border-bottom: 2px solid $dark-green;
+  transition: .2s ease-in-out;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: $light-green;
+    z-index: -1;
+    transition: .3s ease-in-out;
+  }
+
+  &:hover {
+    color: $white;
+
+    &:before {
+      width: 100%;
+    }
+  }
+}

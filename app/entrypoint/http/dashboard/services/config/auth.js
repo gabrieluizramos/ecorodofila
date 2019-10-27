@@ -14,7 +14,7 @@ const AUTHORIZATION = 'Authorization';
 client.formatAuthorizationHeader = (user, token) => `${user}:${token}`;
 client.setHeaders = (name, value) => client.defaults.headers[name] = value;
 
-client.setCredentials = (user, token) => {
+client.setCredentials = (user, token, name) => {
   client.setHeaders(
     AUTHORIZATION,
     client.formatAuthorizationHeader(user, token)
@@ -22,6 +22,7 @@ client.setCredentials = (user, token) => {
 
   cookie.set('token', token, { expires: 1 });
   cookie.set('user', user, { expires: 1 });
+  cookie.set('name', name, { expires: 1 });
 };
 
 export const getAuthenticationHeaders = () => ({

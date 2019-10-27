@@ -1,7 +1,14 @@
 @import '../../styles/variables';
 
 .button {
-  padding: 10px;
+  font-size: $font-size-big;
+  cursor: pointer;
+  padding: $spacing;
   background: $dark-green;
   color: $white;
+  transition: .2s ease-in-out;
+
+  &:hover {
+    background: $light-green;
+  }
 }

@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.text {
+  margin-bottom: $spacing;
+}
+
+.title {
+  color: $dark-green;
+  font-size: $font-size-big;
+  margin-bottom: ($spacing * 2);
+}
+
+.default {
+  color: $grey;
+}

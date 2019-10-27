@@ -7,7 +7,7 @@
 }
 
 .overlay {
-  background: url('../../images/ecovias.jpeg');
+  background: url('/images/ecovias.jpeg');
   background-size: cover;
   position: absolute;
   left: 0;
@@ -17,12 +17,22 @@
   filter: blur(4px) grayscale(1) opacity(0.5);
 }
 
-.form {
+.formContainer {
+  max-width: 500px;
   background: $white;
-  box-shadow: 0 0 4px;
+  box-shadow: $default-shadow;
+}
+
+.form {
+  padding: ($spacing * 2);
   display: flex;
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
-  padding: $spacing * 2;
+}
+
+.subtitle {
+  display: block;
+  padding: ($spacing * 2) ($spacing * 2) 0;
+  color: $grey;
 }

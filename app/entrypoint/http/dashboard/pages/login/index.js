@@ -8,50 +8,99 @@ import Root from '../shared/root';
 import Label from '../../components/label';
 import Input from '../../components/input';
 import Button from '../../components/button';
+import Title from '../../components/title';
+
+// HoC
+import { withSnackbar } from '../shared/hoc';
 
 // Styles
 import styles from './styles.scss';
 
 // Services
-import { login } from '../../services/auth';
+import { login, validateAuthentication } from '../../services/auth';
 
 class Login extends Component {
-  async onSubmit (e) {
+  constructor(props) {
+    super(props);
+
+    this.onSubmit = this.onSubmit.bind(this);
+    this.login = this.login.bind(this);
+  }
+
+  static async getInitialProps (ctx) {
+    const token = validateAuthentication(ctx, false);
+
+    return {
+      authenticated: !!token
+    };
+  }
+
+  componentDidMount() {
+    if(this.props.authenticated) {
+      Router.push('/dashboard');
+    }
+  }
+
+  async onSubmit(e) {
     e.preventDefault();
     const {
-      email: {
-        value: email
+      username: {
+        value: username
       },
       password: {
         value: password
       }
     } = e.target;
 
+    this.login(username, password);
+  }
+
+  async login(user, password) {
     try {
-      await login(email, password);
-      Router.push('/dashboard');
+      await login(user, password);
+
+      this.props.setSnackbar({
+        type: 'success',
+        message: 'Logado com sucesso! Redirecionando...'
+      });
+
+      setTimeout(() => {
+        Router.push('/dashboard');
+      }, 3500);
     } catch(err) {
+      this.props.setSnackbar({
+        type: 'error',
+        message: 'Erro ao logar. Você digitou suas credenciais corretamente?'
+      });
+
       console.log(err);
     }
-
-    return false;
   }
 
   render() {
-    return (
+    return this.props.authenticated ? null : (
       <Root className={styles.login}>
         <div className={styles.overlay}></div>
         <title>EcoRodofila - Login</title>
-        <form className={styles.form} method="POST" onSubmit={this.onSubmit}>
-          <Label for="email">Email</Label>
-          <Input type="text" placeholder="seu@email.com" name="email" />
-          <Input type="password" placeholder="Senha" name="password" />
-          <Button>Entrar</Button>
-        </form>
+        <section className={styles.formContainer}>
+         <header>
+            <Title />
+            <span className={styles.subtitle}>
+              Por favor, informe suas credenciais para acessar o sistema
+            </span>
+          </header>
+          <form className={styles.form} method="POST" onSubmit={this.onSubmit}>
+            <Label for="username">Usuário</Label>
+            <Input type="text" name="username" />
+            <Label for="password">Senha</Label>
+            <Input type="password" name="password" />
+            <Button>Entrar</Button>
+          </form>
+        </section>
       </Root>
-    )
+    );
   }
 }
 
 
-export default Login;
+export default withSnackbar(Login);
