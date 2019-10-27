@@ -1,12 +1,12 @@
 {
-  "name": "fiap-ecorodovias",
+  "name": "ecorodofila",
   "version": "1.0.0",
   "description": "EcoRodovias ",
   "main": "index.js",
   "scripts": {
     "start": "",
     "start:dev": "npm-run-all -p start:dashboard:dev start:bff",
-    "start:dashboard:dev": "./node_modules/.bin/next ./app/entrypoint/http/dashboard",
+    "start:dashboard:dev": "node ./app/entrypoint/http/dashboard/server.js",
     "start:bff": "nodemon ./app/entrypoint/http/bff",
     "start:dashboard": "npm run next:clean && npm run build:next && npm run start:next",
     "start:server": "nodemon ./app/entrypoint/http/incident",
