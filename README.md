@@ -20,8 +20,8 @@ O sistema expõe uma API para criação de novos incidentes, para isso, basta re
 
 ```sh
 curl --request POST \
-  --url "http://localhost:3000/api/incident" \
-  --header 'Authorization: 123token' \
+  --url "http://localhost:3002/api/incident" \
+  --header 'Authorization: admin:123token' \
   --header 'Content-Type: application/json' \
   --header 'cache-control: no-cache' \
   --data '{	"incident": {"name": "name", "description": "description"}}'
