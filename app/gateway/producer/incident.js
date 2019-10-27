@@ -18,6 +18,8 @@ const publish = async incident => {
     });
     await channel.close();
 
+    console.log('Published incident', JSON.stringify(incident));
+
     wasPublished = true;
   } catch (err) {
     console.error(err);

@@ -1,5 +1,21 @@
-const queue = require('../../configs/queue');
+const axios = require('axios');
 const { connect } = require('amqplib');
+
+const queue = require('../../configs/queue');
+const server = require('../../configs/server');
+
+const client = axios.create({
+  baseURL: `${server.base}:${server.ports.bff}/api`
+});
+
+const sendIncidentToBff = async incident => {
+  try {
+    const res = await client.post('/incident', { incident });
+  } catch (err) {
+    console.log(err)
+    throw err;
+  }
+};
 
 const consume = async handleNewMessage => {
   try {
@@ -19,5 +35,6 @@ const consume = async handleNewMessage => {
 };
 
 module.exports = {
-  consume
+  consume,
+  sendIncidentToBff
 };
