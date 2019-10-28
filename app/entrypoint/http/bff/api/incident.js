@@ -15,6 +15,17 @@ router.post('/', (req, res) => {
   return res.status(200).json({ received: true });
 });
 
+router.patch('/:id', (req, res) => {
+  const { observations } = req.body;
+  const { id } = req.params;
+
+  console.log('Will update incident', id);
+
+  storage.setIncidentObservations(id, observations);
+
+  return res.status(200).json({ received: true });
+});
+
 router.post('/assign', auth,  (req, res) => {
   const { user } = req;
 
@@ -38,6 +49,8 @@ router.get('/:id', auth, (req, res) => {
   const { id } = req.params;
 
   const incident = storage.getUserIncidentById(user, id);
+
+  console.log('Incident data', incident);
 
   return res.status(200).json({ incident });
 });

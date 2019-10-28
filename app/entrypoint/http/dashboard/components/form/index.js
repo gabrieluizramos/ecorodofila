@@ -14,7 +14,7 @@ import Button from '../button';
 import styles from './styles.scss';
 
 // Services
-import { createIncident } from '../../services/incident';
+import { createIncident, updateIncident } from '../../services/incident';
 
 class Form extends Component {
   constructor(props) {
@@ -70,7 +70,19 @@ class Form extends Component {
   }
 
   async updateIncident(observations) {
-    console.log(observations);
+    try {
+      await updateIncident(this.props.values.id, observations);
+      this.props.setSnackbar({
+        type: 'success',
+        message: 'Incidente criado com sucesso.'
+      });
+    } catch (err) {
+      console.log(err);
+      this.props.setSnackbar({
+        type: 'error',
+        message: 'Ocorreu algum erro ao criar o incidente.'
+      });
+    }
   }
 
   getExtraProps() {

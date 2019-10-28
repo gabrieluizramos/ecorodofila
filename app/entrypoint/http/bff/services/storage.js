@@ -16,6 +16,14 @@ const formatIncidents = incidents =>
   .PROCESSING.map(incident => ({...incident, status: 'PROCESSING'}))
   .concat(incidents.PROCESSED.map(incident => ({ ...incident, status: 'PROCESSED' })));
 
+const getIncidentById = id => formatIncidents(incidents).filter(incident => incident.id === id);
+
+const updateIncident = incident => {
+  console.log('status', incident);
+  const index = incidents[incident.status.toUpperCase()].findIndex(_incident => _incident.id === incident.id);
+  incidents[incident.status][index] = incident;
+};
+
 const saveIncident = incident => {
   incident.id = generateId();
   incident.status = STATUS.INACTIVE;
@@ -23,6 +31,20 @@ const saveIncident = incident => {
   console.log('Saved incident', incident);
 
   incidents[STATUS.INACTIVE].push(incident);
+};
+
+const setIncidentObservations = (id, observations) => {
+  const [incident] = getIncidentById(id);
+
+  console.log('Setting incident observations', id, observations);
+
+  incident.observations = observations;
+  updateIncident(incident);
+
+  console.log('After updating', getIncidentById(id));
+
+
+  return true;
 };
 
 const getProcessingIncidents = user => incidents[STATUS.PROCESSING].find(incident => incident.user === user);
@@ -69,5 +91,6 @@ module.exports = {
   getNextIncident,
   closeIncident,
   getAllUserIncidents,
-  getUserIncidentById
+  getUserIncidentById,
+  setIncidentObservations
 };

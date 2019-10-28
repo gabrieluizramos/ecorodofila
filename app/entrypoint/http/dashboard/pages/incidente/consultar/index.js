@@ -1,15 +1,17 @@
 // Page
-import { default as Consultar } from '../visualizar';
+import { default as Visualizar } from '../visualizar';
 
 // Services
 import { assignNewIncident } from '../../../services/incident';
 
-Consultar.getInitialProps = async(ctx) => {
-  const { incident } = await assignNewIncident(ctx);
+class Consultar extends Visualizar {
+  static async getInitialProps (ctx) {
+    const { incident } = await assignNewIncident(ctx);
 
-  return {
-    incident
+    return {
+      incident
+    };
   };
-};
+}
 
 export default Consultar;
