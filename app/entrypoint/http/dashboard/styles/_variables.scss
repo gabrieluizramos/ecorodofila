@@ -11,9 +11,12 @@ $default-spacing: 15px;
 $spacing: $default-spacing;
 
 // Font
+$font-size-smallest: 12px;
+$font-size-small: 14px;
 $font-size-default: 16px;
 $font-size-big: 18px;
 
 
-// Shadow
+// Style
 $default-shadow: 0 0 5px rgba($black, 0.5);
+$default-radius: 5px;

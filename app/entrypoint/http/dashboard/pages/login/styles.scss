@@ -21,6 +21,8 @@
   max-width: 500px;
   background: $white;
   box-shadow: $default-shadow;
+  border-radius: $default-radius;
+  overflow: hidden;
 }
 
 .form {
