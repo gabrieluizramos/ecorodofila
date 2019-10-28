@@ -32,7 +32,7 @@ router.post('/assign', auth,  (req, res) => {
   const incident = storage.getNextIncident(user);
   console.log(`Assigning incident ${incident.id} to user ${user}`);
 
-  return res.status(200).json({ incident });
+  return res.status(200).json(incident);
 });
 
 

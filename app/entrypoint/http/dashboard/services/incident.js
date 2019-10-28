@@ -30,9 +30,7 @@ export const assignNewIncident = async (ctx) => {
   const incidentClient = client(ctx);
   const { data } = await incidentClient.post('/incident/assign');
 
-  return {
-    incident: data.incident
-  };
+  return data;
 };
 
 export const getAssignedIncident = async (ctx) => {
