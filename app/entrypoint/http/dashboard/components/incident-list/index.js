@@ -17,7 +17,7 @@ const IncidentList = ({ incidents }) => (
     <div className={styles.newIncident}>
       <Link href="/incidente/consultar">
         <Button link>
-          Consultar novo incidente
+          Tratar próximo incidente da fila
         </Button>
       </Link>
     </div>

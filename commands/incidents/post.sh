@@ -3,4 +3,4 @@ curl --request POST \
   --header 'Authorization: admin:123token' \
   --header 'Content-Type: application/json' \
   --header 'cache-control: no-cache' \
-  --data '{	"incident": {"name": "name", "description": "description"}}'
+  --data '{	"incident": {"name": "Incidente enviado via fila", "description": "Descrição do incidente enviado via fila"}}'

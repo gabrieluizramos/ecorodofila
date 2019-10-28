@@ -9,7 +9,7 @@ const STATUS = {
 };
 
 // Simulates a database where users are acting at incidents
-const incidents = require('./fakedb');
+const incidents = require('./fakedb').withWorker;
 
 const formatIncidents = incidents =>
   incidents
