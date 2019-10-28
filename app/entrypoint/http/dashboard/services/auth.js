@@ -6,9 +6,9 @@ import client from './config/auth';
 export const login = async (email, password) => {
   try {
     const res = await client.post('/login', {email, password});
-    const { data: { token } } = res;
+    const { data: { token, name } } = res;
 
-    client.setCredentials(email, token);
+    client.setCredentials(email, token, name);
 
     return true;
   } catch (err) {

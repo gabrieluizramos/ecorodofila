@@ -16,7 +16,7 @@ router.post('*', (req, res) => {
 router.get('*', auth, (req, res) => {
   const { user } = req;
 
-  const incident = storage.getNextIncident(user);
+  const incident = storage.getAllUserIncidents(user);
 
   return res.status(200).json({ incident });
 });

@@ -9,23 +9,15 @@ import Breadcrumb from '../../../components/breadcrumb';
 import Text from '../../../components/text';
 import IncidentList from '../../../components/incident-list';
 
+// Services
+import { getUserIncidents } from '../../../services/incident';
+
 class Lista extends Component {
   static async getInitialProps(ctx) {
-    const mock = [
-      {
-        id: 1,
-        name: 'Acidente na via X',
-        description: 'Dois carros envolvidos no acidente'
-      },
-      {
-        id: 2,
-        name: 'Cachorro perdido na via Y',
-        description: 'Um cachorro encontra-se perdido'
-      }
-    ];
+    const incidents = await getUserIncidents(ctx);
 
     return {
-      incidents: mock
+      incidents
     }
   }
 

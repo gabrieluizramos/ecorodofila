@@ -13,3 +13,12 @@ export const createIncident = async (name, description) => {
   });
   console.log(a);
 }
+
+export const getUserIncidents = async (ctx) => {
+  const incidentClient = client(ctx);
+  const req = await incidentClient.get(`/incident`);
+
+  return {
+    incidents: req.data.PROCESSING
+  }
+};

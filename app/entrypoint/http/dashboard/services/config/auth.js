@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cookie from 'js-cookie';
+import nextCookie from 'next-cookies';
 
 import config from '../../../../../configs/server';
 
@@ -25,10 +26,10 @@ client.setCredentials = (user, token, name) => {
   cookie.set('name', name, { expires: 1 });
 };
 
-export const getAuthenticationHeaders = () => ({
+export const getAuthenticationHeaders = (ctx) => ({
   [AUTHORIZATION]: client.formatAuthorizationHeader(
-    cookie.get('user'),
-    cookie.get('token'),
+    cookie.get('user') || nextCookie(ctx).user,
+    cookie.get('token') || nextCookie(ctx).token,
   )
 });
 

@@ -48,8 +48,8 @@ const closeIncident = user => {
 };
 
 const getAllUserIncidents = user => ({
-  [STATUS.PROCESSING]: incidents[STATUS.PROCESSING].filter(incident => incident.user === user),
-  [STATUS.PROCESSED]: incidents[STATUS.PROCESSED].filter(incident => incident.user === user)
+  [STATUS.PROCESSING]: incidents[STATUS.PROCESSING].filter(incident => incident.user === user) || [],
+  [STATUS.PROCESSED]: incidents[STATUS.PROCESSED].filter(incident => incident.user === user) || []
 });
 
 module.exports = {

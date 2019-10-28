@@ -4,10 +4,10 @@ import config from '../../../../../configs/server';
 import { getAuthenticationHeaders } from './auth';
 
 // Config
-const client = axios.create({
-  baseURL: `${config.base}:${config.ports.api}/api`,
+const client = (ctx) => axios.create({
+  baseURL: `${config.base}:${config.ports.bff}/api`,
   headers: {
-    ...getAuthenticationHeaders()
+    ...getAuthenticationHeaders(ctx)
   }
 });
 
