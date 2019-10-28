@@ -1,3 +1,6 @@
+// Unique id
+const generateId = require('uniqid');
+
 // Incidents status
 const STATUS = {
   INACTIVE: 'INACTIVE',
@@ -13,6 +16,7 @@ const incidents = {
 };
 
 const saveIncident = incident => {
+  incident.id = generateId();
   incident.status = STATUS.INACTIVE;
   incidents[STATUS.INACTIVE].push(incident);
 };
