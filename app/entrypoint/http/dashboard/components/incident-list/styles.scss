@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+
+.incidentList {
+
+}
+
+.incidentItem {
+  padding: $spacing 0;
+  border-bottom: 1px solid $dark-green;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.incidentInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.incidentText {
+  color: $grey;
+  font-size: $font-size-small;
+  width: 40%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

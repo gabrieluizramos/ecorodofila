@@ -9,17 +9,17 @@ import Breadcrumb from '../../../components/breadcrumb';
 import Text from '../../../components/text';
 import Form from '../../../components/form';
 
-class Criar extends Component {
+class Visualizar extends Component {
   render() {
     return (
       <Fragment>
-        <Breadcrumb steps={['Incidente', 'Criar']} />
+        <Breadcrumb steps={['Incidente', 'Visualizar']} />
         <article>
-          <Text type="title">Criar incidente</Text>
+          <Text type="title">Visualizar incidente</Text>
           <Text>
-            Aqui você poderá registrar um novo incidente, que será tratado por algum analista responsável no futuro.
+            Aqui você poderá consultar e tratar as informações sobre um incidente já criado.
           </Text>
-          <Form />
+          <Form update />
         </article>
       </Fragment>
     );
@@ -27,4 +27,4 @@ class Criar extends Component {
 }
 
 
-export default withAuth(withDashboard(Criar));
+export default withAuth(withDashboard(Visualizar));

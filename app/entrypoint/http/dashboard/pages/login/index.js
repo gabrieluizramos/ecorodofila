@@ -41,7 +41,7 @@ class Login extends Component {
     }
   }
 
-  async onSubmit(e) {
+  onSubmit(e) {
     e.preventDefault();
     const {
       username: {
@@ -90,10 +90,8 @@ class Login extends Component {
             </span>
           </header>
           <form className={styles.form} method="POST" onSubmit={this.onSubmit}>
-            <Label for="username">Usuário</Label>
-            <Input type="text" name="username" />
-            <Label for="password">Senha</Label>
-            <Input type="password" name="password" />
+            <Input type="text" name="username" label="Usuário" />
+            <Input type="password" name="password" label="Senha" />
             <Button>Entrar</Button>
           </form>
         </section>

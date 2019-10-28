@@ -1,0 +1,30 @@
+@import '../../styles/variables';
+
+.breadcrumbContainer {
+  display: flex;
+  margin-bottom: ($spacing * 2);
+}
+
+.breadcrumbItem {
+  font-size: $font-size-smallest;
+  padding: 0 $spacing 0 ($spacing / 2);
+  position: relative;
+  color: $grey;
+
+  &:after {
+    content: '›';
+    position: absolute;
+    right: 0;
+    color: $dark-green;
+  }
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    &:after {
+      display: none;
+    }
+  }
+}
