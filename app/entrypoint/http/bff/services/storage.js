@@ -9,22 +9,26 @@ const STATUS = {
 };
 
 // Simulates a database where users are acting at incidents
-const incidents = {
-  INACTIVE: [],
-  PROCESSING: [],
-  PROCESSED: []
-};
+const incidents = require('./fakedb');
+
+const formatIncidents = incidents =>
+  incidents
+  .PROCESSING.map(incident => ({...incident, status: 'PROCESSING'}))
+  .concat(incidents.PROCESSED.map(incident => ({ ...incident, status: 'PROCESSED' })));
 
 const saveIncident = incident => {
   incident.id = generateId();
   incident.status = STATUS.INACTIVE;
+
+  console.log('Saved incident', incident);
+
   incidents[STATUS.INACTIVE].push(incident);
 };
 
-const getUserIncident = user => incidents[STATUS.PROCESSING].find(incident => incident.user === user);
+const getProcessingIncidents = user => incidents[STATUS.PROCESSING].find(incident => incident.user === user);
 
 const getNextIncident = user => {
-  let incident = getUserIncident(user);
+  let incident = getProcessingIncidents(user);
 
   if (incident) return incident;
 
@@ -38,7 +42,7 @@ const getNextIncident = user => {
 };
 
 const closeIncident = user => {
-  const incident = getUserIncident(user);
+  const incident = getProcessingIncidents(user);
   incident.status = STATUS.PROCESSED;
 
   incidents[STATUS.PROCESSING] = incidents[STATUS.PROCESSING].filter(incident => incident.user !== user);
@@ -47,15 +51,23 @@ const closeIncident = user => {
   return true;
 };
 
-const getAllUserIncidents = user => ({
+const getAllUserIncidents = user => formatIncidents({
   [STATUS.PROCESSING]: incidents[STATUS.PROCESSING].filter(incident => incident.user === user) || [],
   [STATUS.PROCESSED]: incidents[STATUS.PROCESSED].filter(incident => incident.user === user) || []
 });
+
+const getUserIncidentById = (user, id) => {
+  const incidents = getAllUserIncidents(user);
+  const incident = incidents.find(incident => incident.id === id);
+
+  return incident;
+};
 
 module.exports = {
   incidents,
   saveIncident,
   getNextIncident,
   closeIncident,
-  getAllUserIncidents
+  getAllUserIncidents,
+  getUserIncidentById
 };

@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+// HoC
+import { withSnackbar } from '../../pages/shared/hoc';
+
 // Components
 import Text from '../text';
 import Input from '../input';
@@ -10,14 +13,17 @@ import Button from '../button';
 // Styles
 import styles from './styles.scss';
 
+// Services
+import { createIncident } from '../../services/incident';
+
 class Form extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: props.name,
-      description: props.description,
-      observations: props.observations
+      name: props.values.name,
+      description: props.values.description,
+      observations: props.values.observations
     }
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -48,7 +54,19 @@ class Form extends Component {
   }
 
   async createIncident(name, description, observations) {
-    console.log(name, description, observations);
+    try {
+      await createIncident(name, description, observations);
+      this.props.setSnackbar({
+        type: 'success',
+        message: 'Incidente criado com sucesso.'
+      });
+    } catch (err) {
+      console.log(err);
+      this.props.setSnackbar({
+        type: 'error',
+        message: 'Ocorreu algum erro ao criar o incidente.'
+      });
+    }
   }
 
   async updateIncident(observations) {
@@ -111,4 +129,4 @@ Form.defaultProps = {
   }
 };
 
-export default Form;
+export default withSnackbar(Form);

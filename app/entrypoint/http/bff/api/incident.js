@@ -6,17 +6,38 @@ const auth = require('../middlewares/auth');
 
 const router = express.Router();
 
-router.post('*', (req, res) => {
+router.post('/', (req, res) => {
   const { incident } = req.body;
+  console.log('Received incident', incident);
+
   storage.saveIncident(incident);
 
   return res.status(200).json({ received: true });
 });
 
-router.get('*', auth, (req, res) => {
+router.post('/assign', auth,  (req, res) => {
+  const { user } = req;
+
+  const incident = storage.getNextIncident(user);
+  console.log(`Assigning incident ${incident.id} to user ${user}`);
+
+  return res.status(200).json({ incident });
+});
+
+
+router.get('/', auth, (req, res) => {
   const { user } = req;
 
   const incident = storage.getAllUserIncidents(user);
+
+  return res.status(200).json({ incident });
+});
+
+router.get('/:id', auth, (req, res) => {
+  const { user } = req;
+  const { id } = req.params;
+
+  const incident = storage.getUserIncidentById(user, id);
 
   return res.status(200).json({ incident });
 });

@@ -26,4 +26,16 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: left;
+
+  &:last-child {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.newIncident {
+  display: flex;
+  justify-content: flex-end;
+  margin: ($spacing * 2) 0 ($spacing * 4);
 }

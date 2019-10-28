@@ -14,7 +14,7 @@ import { getUserIncidents } from '../../../services/incident';
 
 class Lista extends Component {
   static async getInitialProps(ctx) {
-    const incidents = await getUserIncidents(ctx);
+    const {  incidents } = await getUserIncidents(ctx);
 
     return {
       incidents

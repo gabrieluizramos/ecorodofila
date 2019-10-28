@@ -9,7 +9,18 @@ import Breadcrumb from '../../../components/breadcrumb';
 import Text from '../../../components/text';
 import Form from '../../../components/form';
 
+// Services
+import { getAssignedIncident } from '../../../services/incident';
+
 class Visualizar extends Component {
+  static async getInitialProps (ctx) {
+    const { incident } = await getAssignedIncident(ctx);
+
+    return {
+      incident
+    };
+  }
+
   render() {
     return (
       <Fragment>
@@ -19,7 +30,7 @@ class Visualizar extends Component {
           <Text>
             Aqui você poderá consultar e tratar as informações sobre um incidente já criado.
           </Text>
-          <Form update />
+          <Form update values={this.props.incident} />
         </article>
       </Fragment>
     );
