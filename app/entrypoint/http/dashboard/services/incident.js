@@ -9,6 +9,7 @@ export const createIncident = async (name, description, observations = '') => {
 
   try {
     await incidentClient.post('/incident', { incident: { name, description, observations } });
+    return true;
   } catch (err) {
     console.log(err);
     throw err;
@@ -20,6 +21,7 @@ export const updateIncident = async (id, observations = '') => {
 
   try {
     await incidentClient.patch(`/incident/${id}`, { observations });
+    return true
   } catch (err) {
     console.log(err);
     throw err;

@@ -12,7 +12,6 @@ const sendIncidentToBff = async incident => {
   try {
     const res = await client.post('/incident', { incident });
   } catch (err) {
-    console.log(err)
     throw err;
   }
 };

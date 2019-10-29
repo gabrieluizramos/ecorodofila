@@ -4,8 +4,9 @@ const handleMessageConsumed = channel => async (message, msg = JSON.parse(messag
   try {
     const res = await consumerGateway.sendIncidentToBff(msg);
     await channel.ack(message);
+    console.log('Enviado à API do BFF com sucesso :)');
   } catch (err) {
-    console.log(err);
+    console.log('Erro ao conectar à API do BFF');
   }
 };
 

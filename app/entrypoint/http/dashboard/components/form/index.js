@@ -74,13 +74,13 @@ class Form extends Component {
       await updateIncident(this.props.values.id, observations);
       this.props.setSnackbar({
         type: 'success',
-        message: 'Incidente criado com sucesso.'
+        message: 'Incidente atualizado com sucesso.'
       });
     } catch (err) {
       console.log(err);
       this.props.setSnackbar({
         type: 'error',
-        message: 'Ocorreu algum erro ao criar o incidente.'
+        message: 'Ocorreu algum erro ao atualizar o incidente.'
       });
     }
   }
@@ -126,7 +126,7 @@ class Form extends Component {
           onChange={this.onChange.bind(this, 'observations')}
           value={this.state.observations}
         />
-        <Button>Criar</Button>
+        <Button>{this.props.update ? 'Atualizar' : 'Criar'}</Button>
       </form>
     );
   }
