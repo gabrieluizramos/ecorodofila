@@ -16,6 +16,8 @@ const formatIncidents = incidents =>
   .PROCESSING.map(incident => ({...incident, status: 'PROCESSING'}))
   .concat(incidents.PROCESSED.map(incident => ({ ...incident, status: 'PROCESSED' })));
 
+const getAllIncidents = () => formatIncidents(incidents).filter(incident => incident.id === id);
+
 const getIncidentById = id => formatIncidents(incidents).filter(incident => incident.id === id);
 
 const updateIncident = incident => {
@@ -87,6 +89,7 @@ const getUserIncidentById = (user, id) => {
 
 module.exports = {
   incidents,
+  getAllIncidents,
   saveIncident,
   getNextIncident,
   closeIncident,

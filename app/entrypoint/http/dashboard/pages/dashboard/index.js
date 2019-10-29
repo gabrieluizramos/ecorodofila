@@ -6,8 +6,12 @@ import { withAuth, withDashboard } from '../shared/hoc';
 
 // Components
 import Text from '../../components/text';
+import IncidentCount from '../../components/incident-count';
 
-const Dashboard = () => (
+// Services
+import { getIncidentsCount } from '../../services/incident';
+
+const Dashboard = ({ incidents }) => (
   <Fragment>
     <title>EcoRodofila - Painel</title>
     <article>
@@ -18,8 +22,17 @@ const Dashboard = () => (
       <Text>
         Qualquer dúvida ou necessidate, entre em contato com o suporte.
       </Text>
+      <IncidentCount incidents={incidents} />
     </article>
   </Fragment>
 );
+
+Dashboard.getInitialProps = async ctx => {
+  const incidents = await getIncidentsCount(ctx);
+
+  return {
+    incidents
+  }
+};
 
 export default withAuth(withDashboard(Dashboard));

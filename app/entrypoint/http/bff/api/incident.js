@@ -44,6 +44,14 @@ router.get('/', auth, (req, res) => {
   return res.status(200).json({ incident });
 });
 
+router.get('/count', (req, res) => {
+  const incidents = storage.getAllIncidents();
+
+  console.log('all', incidents);
+
+  return res.status(200).json({ incidents });
+});
+
 router.get('/:id', auth, (req, res) => {
   const { user } = req;
   const { id } = req.params;
