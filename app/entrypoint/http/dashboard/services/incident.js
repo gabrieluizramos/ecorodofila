@@ -55,7 +55,7 @@ export const getUserIncidents = async (ctx) => {
 
 export const getIncidentsCount = async ctx => {
   const incidentClient = client(ctx);
-  const { data } = await incidentClient.get('/incident/count');
-  console.log('data', data)
-  return [];
+  const { data } = await incidentClient.get('/count/status');
+
+  return data.incidents;
 };

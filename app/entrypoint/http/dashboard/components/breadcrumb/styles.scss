@@ -3,6 +3,8 @@
 .breadcrumbContainer {
   display: flex;
   margin-bottom: ($spacing * 2);
+  padding-bottom: ($spacing * 2);
+  border-bottom: 1px solid $dark-green;
 }
 
 .breadcrumbItem {

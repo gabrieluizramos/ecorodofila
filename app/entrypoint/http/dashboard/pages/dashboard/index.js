@@ -6,7 +6,7 @@ import { withAuth, withDashboard } from '../shared/hoc';
 
 // Components
 import Text from '../../components/text';
-import IncidentCount from '../../components/incident-count';
+import StatusMetrics from '../../components/status-metrics';
 
 // Services
 import { getIncidentsCount } from '../../services/incident';
@@ -22,7 +22,7 @@ const Dashboard = ({ incidents }) => (
       <Text>
         Qualquer dúvida ou necessidate, entre em contato com o suporte.
       </Text>
-      <IncidentCount incidents={incidents} />
+      <StatusMetrics incidents={incidents} />
     </article>
   </Fragment>
 );

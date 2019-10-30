@@ -16,7 +16,7 @@ const formatIncidents = incidents =>
   .PROCESSING.map(incident => ({...incident, status: 'PROCESSING'}))
   .concat(incidents.PROCESSED.map(incident => ({ ...incident, status: 'PROCESSED' })));
 
-const getAllIncidents = () => formatIncidents(incidents).filter(incident => incident.id === id);
+const getAllIncidents = raw => raw ? incidents : formatIncidents(incidents);
 
 const getIncidentById = id => formatIncidents(incidents).filter(incident => incident.id === id);
 

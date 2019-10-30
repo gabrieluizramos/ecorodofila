@@ -1,0 +1,61 @@
+@import '../../styles/variables';
+
+.metricsContainer {
+  margin-top: ($spacing * 4);
+
+  header {
+    margin-bottom: ($spacing * 2);
+  }
+
+  h1 {
+    margin-bottom: ($spacing / 2);
+  }
+
+  p {
+    font-size: $font-size-small;
+  }
+}
+
+.metricsList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.metricsItem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: ($spacing * 2);
+  text-align: center;
+  min-height: 140px;
+  margin-right: $spacing;
+  border-radius: $default-radius;
+  box-shadow: $default-shadow;
+
+  .count {
+    font-weight: bold;
+    font-size: $font-size-big;
+    margin-bottom: $spacing;
+  }
+
+  &:nth-child(1) {
+    background: $red;
+  }
+
+  &:nth-child(2) {
+    background: $yellow;
+  }
+
+  &:nth-child(3) {
+    background: $light-green;
+    margin-right: 0;
+  }
+
+  div {
+    font-size: $font-size-smallest;
+    color: $white;
+  }
+}

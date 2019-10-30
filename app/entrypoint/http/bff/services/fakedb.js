@@ -3,10 +3,54 @@ const generateId = require('uniqid');
 module.exports = {
   withWorker: {
     INACTIVE: [
+      {
+        id: generateId(),
+        name: 'Não tratado 1',
+        description: 'Não tratado - descricao do ocorrido',
+      },
+      {
+        id: generateId(),
+        name: 'Não tratado 2',
+        description: 'Não tratado - descricao do ocorrido',
+      },
+      {
+        id: generateId(),
+        name: 'Não tratado 1',
+        description: 'Não tratado - descricao do ocorrido',
+      },
+      {
+        id: generateId(),
+        name: 'Não tratado 2',
+        description: 'Não tratado - descricao do ocorrido',
+      }
     ],
     PROCESSING: [
+      {
+        id: generateId(),
+        name: 'Finalizado 1',
+        description: 'Finalizado - descricao do ocorrido',
+        user: 'guest'
+      }
     ],
     PROCESSED: [
+      {
+        id: generateId(),
+        name: 'Finalizado 1',
+        description: 'Finalizado - descricao do ocorrido',
+        user: 'admin'
+      },
+      {
+        id: generateId(),
+        name: 'Finalizado 1',
+        description: 'Finalizado - descricao do ocorrido',
+        user: 'guest'
+      },
+      {
+        id: generateId(),
+        name: 'Finalizado 1',
+        description: 'Finalizado - descricao do ocorrido',
+        user: 'guest'
+      },
       {
         id: generateId(),
         name: 'Finalizado 1',
