@@ -10,7 +10,23 @@ import Text from '../text';
 // Styles
 import styles from './styles.scss';
 
-const user = cookie.get('user');
+const reduceIncidents = incidentsByPriority => {
+  const statuses =  {
+    INACTIVE: 0,
+    PROCESSED: 0,
+    PROCESSING: 0
+  };
+
+  const reduced = incidentsByPriority.reduce((acc, inc) => (
+    {
+      ...acc,
+      [inc.status]: (acc[inc.status] + 1)
+    }),
+    statuses
+  );
+
+  return reduced;
+};
 
 const StatusMetrics = ({ incidents }) => (
   <section className={styles.metricsContainer}>
@@ -18,21 +34,24 @@ const StatusMetrics = ({ incidents }) => (
       <Text type="title">
         Registro dos incidentes até o momento
       </Text>
-      <Text>(classificados por status)</Text>
+      <Text>(classificados por prioridade e status)</Text>
+      <div className={styles.subtitle}>
+        <span>Inativo</span>
+        <span>Em tratamento</span>
+        <span>Finalizados</span>
+      </div>
     </header>
     <ul className={styles.metricsList}>
+      {Object.keys(incidents).map((priority, index) =>
       <li className={styles.metricsItem}>
-        <span className={styles.count}>{incidents.INACTIVE.length}</span> não tratados
-      </li>
-      <li className={styles.metricsItem}>
-        <span className={styles.count}>{incidents.PROCESSING.length}</span> em tratamento
-      </li>
-      <li className={styles.metricsItem}>
-        <span className={styles.count}>{incidents.PROCESSED.length}</span> finalizados <br />
-        <div>
-          {incidents.PROCESSED.filter(incident => incident.user === user).length} tratados por você :)
+        <div>Prioridade {index + 1} ({incidents[priority].length})</div>
+        <div className={styles.metricsBars}>
+          <div>{reduceIncidents((incidents[priority])).INACTIVE}</div>
+          <div>{reduceIncidents((incidents[priority])).PROCESSING}</div>
+          <div>{reduceIncidents((incidents[priority])).PROCESSED}</div>
         </div>
       </li>
+      )}
     </ul>
   </section>
 );

@@ -11,12 +11,28 @@ const STATUS = {
 // Simulates a database where users are acting at incidents
 const incidents = require('./fakedb').withWorker;
 
-const formatIncidents = incidents =>
+const formatIncidents = (incidents, includeInactive = false) =>
   incidents
   .PROCESSING.map(incident => ({...incident, status: 'PROCESSING'}))
-  .concat(incidents.PROCESSED.map(incident => ({ ...incident, status: 'PROCESSED' })));
+  .concat(incidents.PROCESSED.map(incident => ({ ...incident, status: 'PROCESSED' })))
+  .concat(includeInactive ? incidents.INACTIVE.map(incident => ({ ...incident, status: 'INACTIVE' })) : []);
 
 const getAllIncidents = raw => raw ? incidents : formatIncidents(incidents);
+
+const getAllIncidentsByPriority = () => {
+  const allIncidents = formatIncidents(incidents, true);
+  const prioritizedIncidents = {};
+
+  allIncidents.forEach(incident => {
+    if(prioritizedIncidents[incident.priority]) {
+      prioritizedIncidents[incident.priority].push(incident);
+    } else {
+      prioritizedIncidents[incident.priority] = [incident];
+    }
+  });
+
+  return prioritizedIncidents;
+};
 
 const getIncidentById = id => formatIncidents(incidents).filter(incident => incident.id === id);
 
@@ -95,5 +111,6 @@ module.exports = {
   closeIncident,
   getAllUserIncidents,
   getUserIncidentById,
-  setIncidentObservations
+  setIncidentObservations,
+  getAllIncidentsByPriority
 };

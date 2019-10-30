@@ -7,21 +7,49 @@ module.exports = {
         id: generateId(),
         name: 'Não tratado 1',
         description: 'Não tratado - descricao do ocorrido',
+        priority: 1,
       },
       {
         id: generateId(),
         name: 'Não tratado 2',
         description: 'Não tratado - descricao do ocorrido',
+        priority: 2,
       },
       {
         id: generateId(),
         name: 'Não tratado 1',
         description: 'Não tratado - descricao do ocorrido',
+        priority: 3,
       },
       {
         id: generateId(),
         name: 'Não tratado 2',
         description: 'Não tratado - descricao do ocorrido',
+        priority: 4
+      },
+      {
+        id: generateId(),
+        name: 'Não tratado 1',
+        description: 'Não tratado - descricao do ocorrido',
+        priority: 1,
+      },
+      {
+        id: generateId(),
+        name: 'Não tratado 2',
+        description: 'Não tratado - descricao do ocorrido',
+        priority: 2,
+      },
+      {
+        id: generateId(),
+        name: 'Não tratado 1',
+        description: 'Não tratado - descricao do ocorrido',
+        priority: 3,
+      },
+      {
+        id: generateId(),
+        name: 'Não tratado 2',
+        description: 'Não tratado - descricao do ocorrido',
+        priority: 4
       }
     ],
     PROCESSING: [
@@ -29,7 +57,15 @@ module.exports = {
         id: generateId(),
         name: 'Finalizado 1',
         description: 'Finalizado - descricao do ocorrido',
-        user: 'guest'
+        user: 'guest',
+        priority: 5
+      },
+      {
+        id: generateId(),
+        name: 'Finalizado 1',
+        description: 'Finalizado - descricao do ocorrido',
+        user: 'admin',
+        priority: 5
       }
     ],
     PROCESSED: [
@@ -37,31 +73,71 @@ module.exports = {
         id: generateId(),
         name: 'Finalizado 1',
         description: 'Finalizado - descricao do ocorrido',
-        user: 'admin'
+        user: 'admin',
+        priority: 6
       },
       {
         id: generateId(),
         name: 'Finalizado 1',
         description: 'Finalizado - descricao do ocorrido',
-        user: 'guest'
+        user: 'guest',
+        priority: 7
       },
       {
         id: generateId(),
         name: 'Finalizado 1',
         description: 'Finalizado - descricao do ocorrido',
-        user: 'guest'
+        user: 'guest',
+        priority: 8
       },
       {
         id: generateId(),
         name: 'Finalizado 1',
         description: 'Finalizado - descricao do ocorrido',
-        user: 'admin'
+        user: 'admin',
+        priority: 9,
       },
       {
         id: generateId(),
         name: 'Finalizado 2',
         description: 'Finalizado - descricao do ocorrido',
-        user: 'admin'
+        user: 'admin',
+        priority: 10
+      },
+      {
+        id: generateId(),
+        name: 'Finalizado 1',
+        description: 'Finalizado - descricao do ocorrido',
+        user: 'admin',
+        priority: 6
+      },
+      {
+        id: generateId(),
+        name: 'Finalizado 1',
+        description: 'Finalizado - descricao do ocorrido',
+        user: 'guest',
+        priority: 7
+      },
+      {
+        id: generateId(),
+        name: 'Finalizado 1',
+        description: 'Finalizado - descricao do ocorrido',
+        user: 'guest',
+        priority: 8
+      },
+      {
+        id: generateId(),
+        name: 'Finalizado 1',
+        description: 'Finalizado - descricao do ocorrido',
+        user: 'admin',
+        priority: 9,
+      },
+      {
+        id: generateId(),
+        name: 'Finalizado 2',
+        description: 'Finalizado - descricao do ocorrido',
+        user: 'admin',
+        priority: 10
       }
     ]
   },
