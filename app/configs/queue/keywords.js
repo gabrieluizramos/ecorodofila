@@ -1,3 +1,7 @@
 module.exports = [
-  'acidente'
+  'acidente',
+  'morte',
+  'ferido',
+  'ferimento',
+  'grave'
 ];
